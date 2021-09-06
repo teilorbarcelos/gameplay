@@ -1,7 +1,9 @@
+import { useNavigation } from "@react-navigation/core"
 import React, { useState } from "react"
 import { View } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 import { Appointment } from "../../components/Appointment"
+import { Background } from "../../components/Background"
 import { ButtonAdd } from "../../components/ButtonAdd"
 import { CategorySelect } from "../../components/CategorySelect"
 import { ListDivider } from "../../components/ListDivider"
@@ -11,6 +13,7 @@ import { Profile } from "../../components/Profile"
 import { styles } from "./styles"
 
 export function Home() {
+    const navigation = useNavigation()
     const [category, setCategory] = useState('')
 
     const appointments = [
@@ -93,11 +96,17 @@ export function Home() {
         categoryId === category ? setCategory('') : setCategory(categoryId)
     }
 
+    function handleAppointmentCreate() {
+        navigation.navigate('AppointmentCreate')
+    }
+
     return (
-        <View>
+        <Background>
             <View style={styles.header}>
                 <Profile />
-                <ButtonAdd />
+                <ButtonAdd
+                    onPress={handleAppointmentCreate}
+                />
             </View>
 
                 <CategorySelect
@@ -122,6 +131,6 @@ export function Home() {
                         showsVerticalScrollIndicator={false}
                     />
                 </View>
-        </View>
+        </Background>
     )
 }

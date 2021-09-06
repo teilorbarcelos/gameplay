@@ -8,6 +8,7 @@ import { styles } from "./styles"
 import { theme } from "../../global/styles/theme"
 import PlayerSvg from '../../assets/player.svg'
 import CalendarSvg from '../../assets/calendar.svg'
+import { useNavigation } from "@react-navigation/core"
 
 export interface GuildProps {
     id: string
@@ -32,9 +33,17 @@ export function Appointment({ data, ...rest }: Props) {
     const [category] = categories.filter(item => item.id === data.category)
     const { owner } = data.guild
     const { primary, on } = theme.colors
+    const navigation = useNavigation()
+
+    function handleAppointmentDetails() {
+        navigation.navigate('AppointmentDetails')
+    }
 
     return (
-        <RectButton {...rest}>
+        <RectButton
+            {...rest}
+            onPress={handleAppointmentDetails}
+        >
             <View style={styles.container}>
                 <GuildIcon />
 
