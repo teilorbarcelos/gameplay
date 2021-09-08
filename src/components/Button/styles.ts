@@ -3,25 +3,13 @@ import { theme } from "../../global/styles/theme"
 
 export const styles = StyleSheet.create({
     container: {
-        width: '75%',
+        width: '100%',
         alignSelf: "center",
         height: 56,
         backgroundColor: theme.colors.primary,
         borderRadius: 8,
         flexDirection: 'row',
         alignItems: 'center'
-    },
-    iconWrapper: {
-        justifyContent: "center",
-        alignItems: "center",
-        width: 56,
-        height: 56,
-        borderRightColor: theme.colors.line,
-        borderRightWidth: 1
-    },
-    icon: {
-        width: 24,
-        height: 18
     },
     title: {
         flex: 1,
