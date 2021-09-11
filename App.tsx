@@ -7,6 +7,7 @@ import AppLoading from "expo-app-loading"
 import { StatusBar } from "react-native"
 import { Routes } from "./src/routes"
 import { Background } from "./src/components/Background"
+import { AuthContext, AuthProvider } from "./src/contexts/auth"
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,7 +30,9 @@ export default function App() {
         translucent
       />
 
-      <Routes />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
 
     </Background>
   )
