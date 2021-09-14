@@ -9,7 +9,7 @@ import { AppointmentDetails } from '../screens/AppointmentDetails'
 import { AppointmentCreate } from '../screens/AppointmentCreate'
 
 
-export function AuthRoutes() {
+export function AppRoutes() {
     const { Navigator, Screen } = createStackNavigator()
     return (
         <Navigator
