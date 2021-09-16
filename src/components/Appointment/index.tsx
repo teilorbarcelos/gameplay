@@ -30,21 +30,24 @@ export function Appointment({ data, ...rest }: Props) {
     const { primary, on, secondary50, secondary70 } = theme.colors
     const navigation = useNavigation()
 
-    function handleAppointmentDetails() {
-        navigation.navigate('AppointmentDetails')
+    function handleAppointmentDetails(guildSelected: AppointmentProps) {
+        navigation.navigate('AppointmentDetails', {guildSelected})
     }
 
     return (
         <RectButton
             {...rest}
-            onPress={handleAppointmentDetails}
+            onPress={() => handleAppointmentDetails(data)}
         >
             <View style={styles.container}>
                 <LinearGradient
                     style={styles.guildIconContainer}
                     colors={[secondary50, secondary70]}
                 >
-                    <GuildIcon />
+                    <GuildIcon
+                        guildId={data.guild.id}
+                        iconId={data.guild.icon}
+                    />
                 </LinearGradient>
 
                 <View style={styles.content}>

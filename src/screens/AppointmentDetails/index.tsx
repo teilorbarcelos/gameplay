@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { ImageBackground, Text, View } from "react-native"
 import { BorderlessButton, FlatList } from "react-native-gesture-handler"
 import { Fontisto } from '@expo/vector-icons'
@@ -12,28 +12,18 @@ import { ListHeader } from "../../components/ListHeader"
 import { Member } from "../../components/Member"
 import { ListDivider } from "../../components/ListDivider"
 import { ButtonIcon } from "../../components/ButtonIcon"
+import { AppointmentProps } from "../../components/Appointment"
+import { useRoute } from "@react-navigation/core"
+
+interface Params {
+    guildSelected: AppointmentProps
+}
 
 export function AppointmentDetails() {
-    const members = [
-        {
-            id: '1',
-            userName: 'Teilor',
-            avatar_url: 'https://avatars.githubusercontent.com/u/80414833?v=4',
-            status: 'online'
-        },
-        {
-            id: '2',
-            userName: 'Lucas',
-            avatar_url: 'https://avatars.githubusercontent.com/u/80414833?v=4',
-            status: 'offline'
-        },
-        {
-            id: '3',
-            userName: 'Paulo',
-            avatar_url: 'https://avatars.githubusercontent.com/u/80414833?v=4',
-            status: 'offline'
-        },
-    ]
+    const route = useRoute()
+    const [members, setMembers] = useState([])
+
+    const {guildSelected} = route.params as Params
 
     return (
         <Background>
