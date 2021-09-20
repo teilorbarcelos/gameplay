@@ -17,7 +17,7 @@ export interface AppointmentProps {
     guild: GuildProps
     category: string
     date: string
-    descryption: string
+    description: string
 }
 
 interface Props extends RectButtonProps {
