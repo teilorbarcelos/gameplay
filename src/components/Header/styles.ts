@@ -19,5 +19,8 @@ export const styles = StyleSheet.create({
         fontFamily: theme.fonts.title700,
         fontSize: 20,
         color: theme.colors.heading
+    },
+    removeButton: {
+        marginRight: 24
     }
 })

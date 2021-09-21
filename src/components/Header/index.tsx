@@ -9,10 +9,11 @@ import { styles } from './styles'
 
 interface Props {
     title: string
+    remove?: ReactNode
     action?: ReactNode
 }
 
-export function Header({ title, action = false }: Props) {
+export function Header({ title, remove, action = false }: Props) {
     const { secondary100, secondary40, heading } = theme.colors
 
     const navigation = useNavigation()
@@ -20,7 +21,7 @@ export function Header({ title, action = false }: Props) {
     function handleGoBack() {
         navigation.goBack()
     }
-    
+
     return (
         <LinearGradient
             style={styles.container}
@@ -40,12 +41,16 @@ export function Header({ title, action = false }: Props) {
                 {title}
             </Text>
 
+            <View style={styles.removeButton}>
+                {remove}
+            </View>
+
             {action ?
                 <View>
                     {action}
                 </View>
                 :
-                <View style={{width: 24}} />
+                <View style={{ width: 24 }} />
             }
         </LinearGradient>
     )

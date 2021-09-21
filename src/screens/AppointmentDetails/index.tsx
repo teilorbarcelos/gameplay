@@ -16,6 +16,7 @@ import { AppointmentProps } from "../../components/Appointment"
 import { useRoute } from "@react-navigation/core"
 import { api } from "../../services/api"
 import { Load } from "../../components/Load"
+import { RemoveAppointmentModalView } from "../../components/RemoveAppointmentModalView"
 
 interface Params {
     guildSelected: AppointmentProps
@@ -32,6 +33,7 @@ export function AppointmentDetails() {
     const route = useRoute()
     const [widget, setWidget] = useState<GuildWidget>({} as GuildWidget)
     const [loading, setLoading] = useState(true)
+    const [openRemoveAppointmentModal, setOpenRemoveAppointmentModal] = useState(false)
 
     const { guildSelected } = route.params as Params
 
@@ -41,6 +43,7 @@ export function AppointmentDetails() {
             setWidget(response.data)
         } catch {
             alert('Verifique as configurações do servidor. O widget está habilitado?')
+            setWidget({} as GuildWidget)
         } finally {
             setLoading(false)
         }
@@ -57,6 +60,10 @@ export function AppointmentDetails() {
         })
     }
 
+    async function handleRemoveAppointment() {
+        setOpenRemoveAppointmentModal(true)
+    }
+
     async function handleOpenGuild() {
         Linking.openURL(widget.instant_invite)
     }
@@ -69,6 +76,19 @@ export function AppointmentDetails() {
         <Background>
             <Header
                 title="Detalhes"
+
+                remove={
+                    <BorderlessButton
+                        onPress={handleRemoveAppointment}
+                    >
+                        <Fontisto
+                            name="trash"
+                            size={24}
+                            color={theme.colors.primary}
+                        />
+                    </BorderlessButton>
+                }
+
                 action={guildSelected.guild.owner &&
                     <BorderlessButton
                         onPress={handleShareInvite}
@@ -105,10 +125,11 @@ export function AppointmentDetails() {
 
                 <>
 
-                    <ListHeader
+                    {widget.members &&
+                        <ListHeader
                         title="Jogadores"
                         subtitle={`Total ${widget.members.length}`}
-                    />
+                    />}
 
                     <FlatList
                         data={widget.members}
@@ -122,6 +143,7 @@ export function AppointmentDetails() {
                         style={styles.member}
                     />
                 </>
+
             }
 
             {guildSelected.guild.owner &&
@@ -132,6 +154,12 @@ export function AppointmentDetails() {
                     />
                 </View>
             }
+
+            <RemoveAppointmentModalView
+                visible={openRemoveAppointmentModal}
+                closeModal={() => setOpenRemoveAppointmentModal(false)}
+                appointmentId={guildSelected.id}
+            />
 
         </Background>
     )
