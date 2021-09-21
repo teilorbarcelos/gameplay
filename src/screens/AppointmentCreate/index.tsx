@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import {
+    Alert,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
@@ -27,6 +28,11 @@ import { Background } from "../../components/Background"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { COLLECTION_APPOINTMENTS } from "../../configs/database"
 
+interface Time {
+    hour: number
+    minute: number
+}
+
 export function AppointmentCreate() {
     const [category, setCategory] = useState('')
     const [openGuildsModal, setOpenGuildsModal] = useState(false)
@@ -46,6 +52,55 @@ export function AppointmentCreate() {
     }
 
     async function handleSave() {
+
+        if(!category){
+            Alert.alert('Selecione uma categoria!')
+            return
+        }
+
+        if(!guild.id){
+            Alert.alert('Selecione um servidor!')
+            return
+        }
+
+        if(hour == '' ||
+            minute == '' ||
+            parseInt(hour) < 0 ||
+            parseInt(hour) > 23 ||
+            parseInt(minute) < 0 ||
+            parseInt(minute) > 59
+        ){
+            Alert.alert('Horário inválido!')
+            return
+        }
+
+        if(month == '' || day == '' || parseInt(day) < 1 || parseInt(day) > 31 || parseInt(month) < 1 || parseInt(month) > 12){
+            Alert.alert('Data inválida!')
+            return
+        }
+
+        if(month == '' ||
+            day == ''
+        ){
+            Alert.alert('Data inválida!')
+            return
+        }
+
+        if((month == '4' ||
+            month == '6' ||
+            month == '9' ||
+            month == '11') &&
+            parseInt(day) > 30
+        ){
+            Alert.alert('Data inválida!')
+            return
+        }
+
+        if(month == '2' && parseInt(day) > 29){
+            Alert.alert('Data inválida!')
+            return
+        }
+
         const newAppointment = {
             id: uuid.v4(),
             guild,

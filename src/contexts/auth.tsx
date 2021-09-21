@@ -3,7 +3,7 @@ import * as AuthSession from 'expo-auth-session'
 import { api } from '../services/api'
 import { CDN_IMAGE, CLIENT_ID, REDIRECT_URI, RESPONSE_TYPE, SCOPE } from '../configs'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { COLLECTION_USERS } from '../configs/database'
+import { COLLECTION_APPOINTMENTS, COLLECTION_USERS } from '../configs/database'
 
 interface User {
     id: string
@@ -74,6 +74,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     async function signOut() {
         setUser({} as User)
         await AsyncStorage.removeItem(COLLECTION_USERS)
+        await AsyncStorage.removeItem(COLLECTION_APPOINTMENTS)
     }
 
     async function loadUserStorageData() {
