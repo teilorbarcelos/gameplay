@@ -118,8 +118,8 @@ CDN_IMAGE=
 
 ## 📄 Licença / License
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/rocketseat-education/nlw-06-react-native/blob/aff87d78e8abcbc411d8bc5f3f43857c4a07a1ed/LICENSE.md) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://rem.mit-license.org/) para mais detalhes.
 
-This project is under the MIT license. See the file [LICENSE](https://github.com/rocketseat-education/nlw-06-react-native/blob/aff87d78e8abcbc411d8bc5f3f43857c4a07a1ed/LICENSE.md) to more details.
+This project is under the MIT license. See the file [LICENSE](https://rem.mit-license.org/) to more details.
 
 <br />
