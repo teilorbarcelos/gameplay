@@ -2,7 +2,7 @@ This README.md is writen in english and portuguese.
 Este README.md está escrito em português e inglês.
 
 <h1 align="center">
-  <img alt="GamePlay" height="80" title="Plant Manager" src=".github/logo.png" />
+  <img alt="GamePlay" height="80" title="Plant Manager" src="https://github.com/rocketseat-education/nlw-06-react-native/blob/aff87d78e8abcbc411d8bc5f3f43857c4a07a1ed/.github/logo.png" />
 </h1>
 
 <p align="center">
