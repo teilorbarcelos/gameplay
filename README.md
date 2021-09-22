@@ -1,4 +1,7 @@
 This README.md is writen in english and portuguese.
+
+============================
+
 Este README.md está escrito em português e inglês.
 
 <h1 align="center">
